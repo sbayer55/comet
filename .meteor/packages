@@ -6,7 +6,7 @@
 
 meteor-platform
 autopublish
-insecure
-angular
-bootstrap
 angularui:angular-ui-router
+angular
+mrt:bootstrap-3
+accounts-password
