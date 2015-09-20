@@ -1,13 +1,29 @@
-<div class="row" ng-repeat="message in chats">
-    {{ message }}
+<div class="container">
+    <div class="row">
+        <blaze-template name="loginButtons"></blaze-template>
+        <button class="btn btn-default" type="button"
+                ng-click="removeAll();">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete Chat
+        </button>
+    </div>
+</div>
+
+<div class="chat-window">
+    <div class="container" ng-repeat="message in chats">
+        <div class="row">
+            <small class="subtle">{{ message.author }}: </small>{{ message.message }}
+        </div>
+    </div>
 </div>
 
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
+
+        <form novalidate ng-submit="sendMessage()">
+            <small class="subtle">{{ currentUser.emails[0].address }}</small>
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Message..."
-                       ng-model="nextMessage">
+                       ng-model="nextMessage" ng-submit="sendMessage()">
                 <span class="input-group-btn">
                     <button class="btn btn-default we-chat" type="button"
                             ng-click="sendMessage()">
@@ -15,6 +31,6 @@
                     </button>
                 </span>
             </div><!-- /input-group -->
-        </div><!-- /.col-lg-6 -->
+        </form>
     </div><!-- /.row -->
 </div>
