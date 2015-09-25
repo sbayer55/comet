@@ -10,6 +10,11 @@ angular.module('comet').config(['$urlRouterProvider', '$stateProvider', '$locati
              url: '/chat',
              templateUrl: 'client/views/chat.ng.html',
              controller: 'chatController'
+         })
+         .state('user', {
+             url: '/user',
+             templateUrl: 'client/views/user.ng.html',
+             controller: 'userController'
          });
 
         $urlRouterProvider.otherwise("/chat");

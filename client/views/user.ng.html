@@ -1,0 +1,56 @@
+<div class="jumbotron" xmlns="http://www.w3.org/1999/html">
+    <h1>Hello {{currentUser.profile.firstName}}</h1>
+    This is your administration panel, please make yourself at home.
+</div>
+
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form class="form-horizontal" novalidate>
+                <fieldset>
+                    <legend>User</legend>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="userId">_id</label>
+                        <div class="col-sm-9">
+                            <input id="userId" class="form-control" type="text" ng-model="currentUser._id" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-10 col-sm-offset-2">
+                            <div class="checkbox disabled">
+                                <label for="userVerified">
+                                    Verified
+                                    <input id="userVerified" type="checkbox" ng-value="currentUser.verified" disabled>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Profile</legend>
+                    <div class="form-group" ng-repeat="email in currentUser.emails">
+                        <label class="col-sm-2 control-label" for="userEmail">Email</label>
+                        <div class="col-sm-9">
+                            <input id="userEmail" class="form-control" type="text" ng-model="email.address">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="userFirstName">First Name</label>
+                        <div class="col-sm-9">
+                            <input id="userFirstName" class="form-control" type="text" ng-model="currentUser.profile.firstName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="userLastName">Last Name</label>
+                        <div class="col-sm-9">
+                            <input id="userLastName" class="form-control" type="text" ng-model="currentUser.profile.lastName">
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="col-sm-1 col-sm-offset-10">
+                    <button class="btn btn-primary pull-right" ng-click="submit()">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -7,6 +7,7 @@ angular.module('comet').controller('chatController',
         console.log("chatController Loading...");
 
         // Globals
+        $scope.chats = $meteor.collection(Chats).subscribe('chats');
 
         // Functions
 
