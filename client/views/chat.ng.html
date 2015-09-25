@@ -1,36 +1,37 @@
-<div class="container">
-    <div class="row">
-        <blaze-template name="loginButtons"></blaze-template>
-        <button class="btn btn-default" type="button"
-                ng-click="removeAll();">
-            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete Chat
-        </button>
-    </div>
-</div>
+<div class="col-md-6 col-md-offset-3">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <blaze-template name="loginButtons"></blaze-template>
+            <button class="btn btn-default" type="button"
+                    ng-click="removeAll();">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete Chat
+            </button>
+        </div>
+        <div class="panel-body conversation-panel" style="overflow: scroll; height: 400px">
+            <p ng-repeat="message in chats" class="messageRow"
+               ng-class="{messageSent: isCurrentUser(message.author),
+                        messageReceived: !isCurrentUser(message.author)}"
+               ng-init="scroll()">
 
-<div class="chat-window">
-    <div class="container" ng-repeat="message in chats">
-        <div class="row">
-            <small class="subtle">{{ message.author }}: </small>{{ message.message }}
+                <small class="subtle messageAuthor" ng-hide="isCurrentUser(message.author)">{{ message.author }}: </small>
+                    <span class="message">
+                        {{ message.message }}
+                    </span>
+            </p>
+        </div>
+        <div class="panel-footer">
+            <form novalidate ng-submit="sendMessage()">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Message..."
+                           ng-model="nextMessage" ng-submit="sendMessage()">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default we-chat" type="button"
+                                ng-click="sendMessage()">
+                            <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+                        </button>
+                    </span>
+                </div><!-- /input-group -->
+            </form>
         </div>
     </div>
-</div>
-
-<div class="container">
-    <div class="row">
-
-        <form novalidate ng-submit="sendMessage()">
-            <small class="subtle">{{ currentUser.emails[0].address }}</small>
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Message..."
-                       ng-model="nextMessage" ng-submit="sendMessage()">
-                <span class="input-group-btn">
-                    <button class="btn btn-default we-chat" type="button"
-                            ng-click="sendMessage()">
-                        <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
-                    </button>
-                </span>
-            </div><!-- /input-group -->
-        </form>
-    </div><!-- /.row -->
 </div>
